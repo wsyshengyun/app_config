@@ -1,0 +1,141 @@
+set tabstop=4 
+set autoindent
+set backspace=2
+set smartindent
+set ai!
+set mouse=a
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+"" Set cursor shape and color
+if &term =~ "xterm"
+    " INSERT mode
+    let &t_SI = "\<Esc>[6 q" . "\<Esc>]12;blue\x7"
+    " REPLACE mode
+    let &t_SR = "\<Esc>[3 q" . "\<Esc>]12;black\x7"
+    " NORMAL mode
+    let &t_EI = "\<Esc>[2 q" . "\<Esc>]12;green\x7"
+endif
+" 1 -> blinking block  闪烁的方块
+" 2 -> solid block  不闪烁的方块
+" 3 -> blinking underscore  闪烁的下划线
+" 4 -> solid underscore  不闪烁的下划线
+" 5 -> blinking vertical bar  闪烁的竖线
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>k
+
+"设置字体
+"set guifont=Consolas:h14
+set guifont=Courier_New:h14
+colorscheme morning
+
+"不显示工具/菜单栏
+set guioptions-=T
+set guioptions-=m 
+set guioptions-=L 
+set guioptions-=r
+set guioptions-=b
+"使用内置的tab样式 而不是gui
+set guioptions-=e
+
+"
+set nolist
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 通用设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set guicursor=n-c-v:ver50-ncvCursor
+inoremap jj <esc>  
+let mapleader = "," "定义<leader>键
+set nocompatible    "设置不兼容原始vi模式
+filetype on     "设置开启文件类型侦测
+filetype plugin on  "加载对应文件类型插件
+set noeb        "关闭错误提示
+syntax enable       "开启语法高亮功能
+syntax on       "自动语法高亮
+set t_Co=256        "开启256色支持
+"set term=screen-256color
+set cmdheight=2     "设置命令行高度
+set showcmd     "select模式下显示选中的行数
+set ruler       "总是显示光标的位置
+set laststatus=2    "总是显示状态栏
+set number      "开启行号显示
+set whichwrap+=<,>,h,l  "设置光标键跨行
+set virtualedit=block,onemore   "允许光标出现在最后一个字符的后面
+"set CursorLine term=bold cterm=bold ctermbg=237   "设置当前行的背景色为灰色
+"hi CursorLine term=bold cterm=bold ctermbg=Red
+set cursorline      "高亮显示当前行,显示为一条直线
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 缓存设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nobackup        "设置不备份
+set noswapfile      "禁止生成临时文件
+set autoread        "文件在vim之外修改过，自动重新载入
+set autowrite       "设置自动保存
+set confirm         "在处理未保存或只读文件时，弹出确认
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 编码设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set langmenu=zh_CN.UTF-8
+set helplang=cn
+set termencoding=utf-8
+set encoding=utf8
+set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 代码补全
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set wildmenu        "vim自身命令行模式智能补全
+set completeopt-=preview    "补全时不显示窗口，只显示补全列表
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"代码折叠
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set foldmethod=syntax       "设置基于语法进行代码折叠
+set nofoldenable            "关闭代码折叠
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 优化设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"映射 esc 键为 jj
+inoremap jj <Esc>
+"快速打开vim配置文件：_vimrc
+nnoremap <leader>e :e ~/_vimrc<cr>
+"刷新配置
+nnoremap <leader>r :source $MYVIMRC<cr>
+" 插入模式、正常模式按 Ctrl+u 快速转换为大写
+inoremap <c-u> <esc>viwUea
+nnoremap <c-u> viwUe
+"Ctrl+d 复制本行并粘贴到一下行
+nnoremap <c-d> yyp
+
+" <leader>+q 快速退出vim
+nnoremap <leader>q :q<cr>
+inoremap <leader>q <Esc>:q<cr>
+
+"插入模式快速到另一个字符右边，对于配对的符号（如括号）很有用
+imap <c-a> <Esc>la
+"插入模式移动到下一行
+imap <c-d> <Esc>o
+"移动到末尾
+imap <c-e> <Esc>A
+
+" 添加“空格键”为代码折叠
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+
+"若打开分割窗口，可快速切换窗口
+"快捷键提示：Ctrl+w w 切换窗口; Ctrl+w s 水平分割; Ctrl+w v 竖直分割
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+"buffer change
+nnoremap <c-n> :bn<cr>
+nnoremap <c-p> :bp<cr>
+nnoremap <leader>d :bd<cr>
+
+
+
+
